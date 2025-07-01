@@ -183,9 +183,9 @@ impl LibInfo {
     }
 
     fn probe_via_search( &self, pkg_name: &str, scan_incdir: bool ) -> Result<ProbedEx> {
-        if cfg!( unix ) {
-            return Err( anyhow!( "failed in using pkg-config for probe library" ));
-        }
+        //if cfg!( unix ) {
+        //    return Err( anyhow!( "failed in using pkg-config for probe library" ));
+        //}
 
         if let Some( table ) = self.specs
             .get( pkg_name )
@@ -402,7 +402,7 @@ fn main() {
 
     if !lib_info_all.headers.borrow().is_empty() {
 
-        let mut builder = bindgen::Builder::default()
+        let mut builder = bindgen_helpers::Builder::default()
             .generate_comments( false )
         ;
 
